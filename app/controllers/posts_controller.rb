@@ -27,7 +27,7 @@ class PostsController < ApplicationController
 
   def update
     @post=Post.find(params[:id])
-    if @post.update(params:require(:post).permit(:title,:start,:finish,:note))
+    if @post.update(params.require(:post).permit(:title,:start,:finish,:allday,:note))
       flash[:notice] = "スケジュールの更新をしました"
       redirect_to:posts
     else
@@ -36,6 +36,10 @@ class PostsController < ApplicationController
   end
 
   def destroy
+    @post =Post.find(params[:id])
+    @post.destroy
+    flash[:notice]="予定を削除しました"
+    redirect_to:posts
   end
 
 end

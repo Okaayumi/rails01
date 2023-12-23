@@ -1,5 +1,8 @@
 <div class ="container">
     <header>
+      <% if flash[:notice] %>
+        <p class="notice"><%= flash[:notice] %></p>
+      <% end %>
     <div class="pagetitle">
         <p>予定一覧</p>
         <button class="btn_new"><%=link_to "新規追加",:new_post %></button>
@@ -38,6 +41,12 @@
             </td>
             <td>
               <%= link_to "詳細",post%>
+            </td>
+            <td>
+              <%= link_to "編集",[:edit,post]%>
+            </td>
+            <td>
+              <%=link_to"削除",post,method::delete,data:{confirm:"本当に削除しますか？"}%>
             </td>
         </tr>
         <% end %>
