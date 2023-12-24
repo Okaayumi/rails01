@@ -3,6 +3,7 @@ class PostsController < ApplicationController
     @posts=Post.all
     @date1 = Date.current.strftime('%Y/%m/%d')
     @count =Post.count
+   
   end
   def new
     @post=Post.new
@@ -11,6 +12,7 @@ class PostsController < ApplicationController
   def create
     @post=Post.new(params.require(:post).permit(:title,:start,:finish,:allday,:note))
     if @post.save
+      flash[:notice] = "スケジュールを新規追加しました"
       redirect_to:posts
     else render "new"
     end
